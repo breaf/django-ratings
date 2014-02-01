@@ -13,7 +13,7 @@ class Migration(SchemaMigration):
             ('object_id', self.gf('django.db.models.fields.PositiveIntegerField')()),
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('content_type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['contenttypes.ContentType'])),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['accounts.User'])),
         ))
         db.send_create_signal('djangoratings', ['IgnoredObject'])
 
@@ -57,7 +57,7 @@ class Migration(SchemaMigration):
             'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'object_id': ('django.db.models.fields.PositiveIntegerField', [], {}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['accounts.User']"})
         },
         'djangoratings.score': {
             'Meta': {'unique_together': "(('content_type', 'object_id', 'key'),)", 'object_name': 'Score'},
@@ -73,9 +73,9 @@ class Migration(SchemaMigration):
             'agrees': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
             'disagrees': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
             'exclude': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'blank': 'True'}),
-            'from_user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'similar_users'", 'to': "orm['auth.User']"}),
+            'from_user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'similar_users'", 'to': "orm['accounts.User']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'to_user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'similar_users_from'", 'to': "orm['auth.User']"})
+            'to_user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'similar_users_from'", 'to': "orm['accounts.User']"})
         },
         'djangoratings.vote': {
             'Meta': {'unique_together': "(('content_type', 'object_id', 'key', 'user', 'ip_address'),)", 'object_name': 'Vote'},
