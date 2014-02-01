@@ -13,11 +13,11 @@ class Migration(SchemaMigration):
 
         # Adding model 'SimilarUser'
         db.create_table('djangoratings_similaruser', (
-            ('to_user', self.gf('django.db.models.fields.related.ForeignKey')(related_name='similar_users_from', to=orm['auth.User'])),
+            ('to_user', self.gf('django.db.models.fields.related.ForeignKey')(related_name='similar_users_from', to=orm['accounts.User'])),
             ('agrees', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('disagrees', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
-            ('from_user', self.gf('django.db.models.fields.related.ForeignKey')(related_name='similar_users', to=orm['auth.User'])),
+            ('from_user', self.gf('django.db.models.fields.related.ForeignKey')(related_name='similar_users', to=orm['accounts.User'])),
         ))
         db.send_create_signal('djangoratings', ['SimilarUser'])
 
@@ -86,9 +86,9 @@ class Migration(SchemaMigration):
             'Meta': {'unique_together': "(('from_user', 'to_user'),)", 'object_name': 'SimilarUser'},
             'agrees': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
             'disagrees': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
-            'from_user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'similar_users'", 'to': "orm['auth.User']"}),
+            'from_user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'similar_users'", 'to': "orm['accounts.User']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'to_user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'similar_users_from'", 'to': "orm['auth.User']"})
+            'to_user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'similar_users_from'", 'to': "orm['accounts.User']"})
         },
         'djangoratings.vote': {
             'Meta': {'unique_together': "(('content_type', 'object_id', 'key', 'user', 'ip_address'),)", 'object_name': 'Vote'},
