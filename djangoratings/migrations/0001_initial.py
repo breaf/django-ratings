@@ -69,7 +69,7 @@ class Migration:
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True'}),
             'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
             'phone': ('django.db.models.fields.CharField', [], {'max_length': '20'})
-        }        
+        },        
         'contenttypes.contenttype': {
             'Meta': {'unique_together': "(('app_label', 'model'),)", 'db_table': "'django_content_type'"},
             'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
