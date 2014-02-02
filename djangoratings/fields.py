@@ -167,9 +167,9 @@ class RatingManager(object):
         
         use_cookies = (self.field.allow_anonymous and self.field.use_cookies)
         if use_cookies:
-            defaults['cookie'] = now().strftime('%Y%m%d%H%M%S%f') # -> md5_hexdigest?
+            # defaults['cookie'] = now().strftime('%Y%m%d%H%M%S%f') # -> md5_hexdigest?
             # TODO: move 'vote-%d.%d.%s' to settings or something
-            cookie_name = 'vote-%d.%d.%s' % (kwargs['content_type'].pk, kwargs['object_id'], kwargs['key'][:6],) # -> md5_hexdigest?
+            cookie_name = 'sessionid'  # 'vote-%d.%d.%s' % (kwargs['content_type'].pk, kwargs['object_id'], kwargs['key'][:6],) # -> md5_hexdigest?
             cookie = cookies.get(cookie_name) # try to get existent cookie value
             if not cookie:
                 kwargs['cookie__isnull'] = True
@@ -192,7 +192,7 @@ class RatingManager(object):
             kwargs.update(defaults)
             if use_cookies:
                 # record with specified cookie was not found ...
-                cookie = defaults['cookie'] # ... thus we need to replace old cookie (if presented) with new one
+                # cookie = defaults['cookie'] # ... thus we need to replace old cookie (if presented) with new one
                 kwargs.pop('cookie__isnull', '') # ... and remove 'cookie__isnull' (if presented) from .create()'s **kwargs
             rating, created = Vote.objects.create(**kwargs), True
             
